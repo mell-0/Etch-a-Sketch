@@ -6,33 +6,66 @@ let divContainer = document.querySelector('.divContainer');
 let rowContainer;
 let squareDiv;
 
-let row = column = 16;
+//let row = column = 16;
 
 let num = 1; // used to store the value of each box
 
-for (let i=1; i<=row; i++)
+function makeGrid(size = 16) // setting the defult value for a parameter to 16
 {
-    rowContainer = document.createElement("div");
-    rowContainer.classList.add("divRow"); // adds a new css class to this html element 
-    //rowContainer.className = "divRow"; // className overwrites & replaces the css class
+    let row = column = size;
 
-    for (let j=1; j<=column; j++)
+    for (let i=1; i<=row; i++)
     {
-        squareDiv = document.createElement("div");
-        //squareDiv.textContent = '';
+        rowContainer = document.createElement("div");
+        rowContainer.classList.add("divRow"); // adds a new css class to this html element 
+        //rowContainer.className = "divRow"; // className overwrites & replaces the css class
 
-        // trying to change the color of the boxes using js
-        squareDiv.addEventListener("mouseenter", (e) => 
+        for (let j=1; j<=column; j++)
         {
-            console.log(e);
-            e.target.style.cssText = 'background-color: rgb(110, 47, 112);';
-        });
+            squareDiv = document.createElement("div");
+            //squareDiv.textContent = '';
 
-        rowContainer.appendChild(squareDiv);
-    }
+            squareDiv.addEventListener("mouseenter", (e) => 
+            {
+                console.log(e);
+                e.target.style.cssText = 'background-color: rgb(110, 47, 112);';
+            });   
 
-    divContainer.appendChild(rowContainer);
+            rowContainer.appendChild(squareDiv);
+        }
+
+        divContainer.appendChild(rowContainer);
+    };
 }
+
+makeGrid();
+
+// adding popup asking for number of boxes & replacing the grid with new size
+let btn = document.querySelector('#boxBtn');
+let size = 16;
+
+btn.addEventListener("click", () =>
+{
+    do 
+    {
+        size = Number(prompt('Enter # of boxes per row/column, maximum 100', "16")); // returns string, converted to number
+    }
+    while(size > 100);
+    
+    console.log(typeof size + " " + size);
+
+    divContainer.textContent = ''; // removing the grid
+
+    // while (divContainer.firstChild) // other way of removing grid, removing last first bc it's faster in arrays
+    // {
+    //     divContainer.removeChild(divContainer.lastChild); 
+    // }
+
+    if (size <= 0 || Number.isNaN(size)) // gives size 16 if incorrect size
+        size = 16;
+
+    makeGrid(size);
+});
 
 
 
