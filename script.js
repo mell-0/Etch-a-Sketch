@@ -5,22 +5,26 @@ let divContainer = document.querySelector('.divContainer');
 
 let rowContainer;
 let squareDiv;
-// for (let j=1; j<=3; j++)
-// {
-//     for (let i=1; i<=3; i++)
-//     {
-//         rowContainer = document.createElement('div');
-//         squareDiv = document.createElement('div');
 
-//         squareDiv.textContent = i;
-//         squareDiv.style.cssText = 'border: 2px solid black; '; //height: 20px; width: 20px
+let row = column = 16;
 
-        
+let num = 1; // used to store the value of each box
 
-//         rowContainer.appendChild(squareDiv);
-//         divContainer.appendChild(rowContainer);
-//     }
-// }
+for (let i=1; i<=row; i++)
+{
+    rowContainer = document.createElement("div");
+    rowContainer.classList.add("divRow"); // adds a new css class to this html element 
+    //rowContainer.className = "divRow"; // className overwrites & replaces the css class
+
+    for (let j=1; j<=column; j++)
+    {
+        squareDiv = document.createElement("div");
+        //squareDiv.textContent = '';
+        rowContainer.appendChild(squareDiv);
+    }
+
+    divContainer.appendChild(rowContainer);
+}
 
 
 

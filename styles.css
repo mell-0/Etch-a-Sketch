@@ -1,6 +1,5 @@
 .divContainer
 {
-    
     background-color: rgb(113, 87, 114);
     border: 2px solid rgb(3, 3, 3);
     width: 500px;
@@ -8,21 +7,18 @@
 
     display: flex;
     flex-direction: column;
-    flex-wrap: wrap;
-    justify-content: space-between;
+
 }
 
 .divRow
 {
     display: flex;
-    justify-content: space-between;
-
     flex: 2 1 auto; /* makes row container take up all the space */
-
 }
 
 .divRow div  /* makes boxes take up all the space */
 {
     color: brown;
     flex: 2 1 auto;
+    border: 1px solid rgb(245, 138, 197);
 }
