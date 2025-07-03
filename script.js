@@ -20,11 +20,21 @@ for (let i=1; i<=row; i++)
     {
         squareDiv = document.createElement("div");
         //squareDiv.textContent = '';
+
+        // trying to change the color of the boxes using js
+        squareDiv.addEventListener("mouseenter", (e) => 
+        {
+            console.log(e);
+            e.target.style.cssText = 'background-color: rgb(110, 47, 112);';
+        });
+
         rowContainer.appendChild(squareDiv);
     }
 
     divContainer.appendChild(rowContainer);
 }
+
+
 
 
 
