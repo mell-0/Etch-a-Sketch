@@ -3,16 +3,18 @@ console.log('hello from script');
 // Create a webpage with a 16x16 grid of square divs, make 3x3 grid
 let divContainer = document.querySelector('.divContainer');
 
-let rowContainer;
-let squareDiv;
+let rowContainer; // used to store the divs in a row
+let squareDiv; // used to store the boxes that's in the row container
 
-//let row = column = 16;
+let mouseDown = false; // used to check if the mouse button is down
+let mouseEnter = false; // used to check if the mouse entered a box
 
 let num = 1; // used to store the value of each box
 
 function makeGrid(size = 16) // setting the defult value for a parameter to 16
 {
     let row = column = size;
+    let num = 0;
 
     for (let i=1; i<=row; i++)
     {
@@ -23,12 +25,16 @@ function makeGrid(size = 16) // setting the defult value for a parameter to 16
         for (let j=1; j<=column; j++)
         {
             squareDiv = document.createElement("div");
-            //squareDiv.textContent = '';
+            //squareDiv.textContent = ''; //num++;
 
-            squareDiv.addEventListener("mouseenter", (e) => 
+            squareDiv.addEventListener("mousemove", (e) =>  // mouseenter doesn't work properly
             {
-                console.log(e);
-                e.target.style.cssText = 'background-color: rgb(110, 47, 112);';
+                //console.log(e.target);
+                //e.target.style.cssText = 'background-color: rgb(110, 47, 112);';
+                mouseEnter = true;
+
+                if (mouseEnter && mouseDown)
+                    colorBox(e);
             });   
 
             rowContainer.appendChild(squareDiv);
@@ -38,11 +44,31 @@ function makeGrid(size = 16) // setting the defult value for a parameter to 16
     };
 }
 
-makeGrid();
+//
+divContainer.addEventListener("mousedown", () => 
+{
+    //console.log("mouse down " + e.target);
+    mouseDown = true;
+});
+
+divContainer.addEventListener("mouseup", () => 
+{
+    //console.log("mouse down " + e.target);
+    mouseDown = false;
+});
+
+
+
+function colorBox(e)
+{
+    e.target.style.cssText = 'background-color: rgb(110, 47, 112);';
+}
+
+makeGrid(); // making the defult grid on screen
 
 // adding popup asking for number of boxes & replacing the grid with new size
 let btn = document.querySelector('#boxBtn');
-let size = 16;
+let size; // used to store the grid size
 
 btn.addEventListener("click", () =>
 {
@@ -66,6 +92,11 @@ btn.addEventListener("click", () =>
 
     makeGrid(size);
 });
+
+
+/**
+ * how to make it where it only colors when I hold the mouse down
+ */
 
 
 
