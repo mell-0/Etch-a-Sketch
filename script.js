@@ -7,14 +7,13 @@ let rowContainer; // used to store the divs in a row
 let squareDiv; // used to store the boxes that's in the row container
 
 let mouseDown = false; // used to check if the mouse button is down
-let mouseEnter = false; // used to check if the mouse entered a box
 
 let num = 1; // used to store the value of each box
 
 function makeGrid(size = 16) // setting the defult value for a parameter to 16
 {
     let row = column = size;
-    let num = 0;
+    //let num = 0;
 
     for (let i=1; i<=row; i++)
     {
@@ -27,13 +26,9 @@ function makeGrid(size = 16) // setting the defult value for a parameter to 16
             squareDiv = document.createElement("div");
             //squareDiv.textContent = ''; //num++;
 
-            squareDiv.addEventListener("mousemove", (e) =>  // mouseenter doesn't work properly
+            squareDiv.addEventListener("mouseenter", (e) =>  
             {
-                //console.log(e.target);
-                //e.target.style.cssText = 'background-color: rgb(110, 47, 112);';
-                mouseEnter = true;
-
-                if (mouseEnter && mouseDown)
+                if (mouseDown)
                     colorBox(e);
             });  
 
@@ -42,20 +37,21 @@ function makeGrid(size = 16) // setting the defult value for a parameter to 16
                 colorBox(e);
             });  
 
-            rowContainer.appendChild(squareDiv);
+            rowContainer.appendChild(squareDiv); // adding boxes to a row container
         }
 
-        divContainer.appendChild(rowContainer);
+        divContainer.appendChild(rowContainer); // adding the row to the div container
     };
 }
 
-//
+// makes it so that you only color when you hold down right click
 divContainer.addEventListener("mousedown", () => 
 {
     //console.log("mouse down " + e.target);
     mouseDown = true;
 });
 
+// turn off coloring when right click is not down
 divContainer.addEventListener("mouseup", () => 
 {
     //console.log("mouse down " + e.target);
@@ -63,7 +59,7 @@ divContainer.addEventListener("mouseup", () =>
 });
 
 
-
+// colors in box
 function colorBox(e)
 {
     e.target.style.cssText = 'background-color: rgb(110, 47, 112);';
