@@ -10,7 +10,8 @@ let mouseDown = false; // used to check if the mouse button is down
 
 let num = 1; // used to store the value of each box
 
-let boxColor = 'background-color: rgb(110, 47, 112);';
+// defult color is purple but can be changed later
+let boxColor = 'background-color: rgb(110, 47, 112);'; 
 
 function makeGrid(size = 16) // setting the defult value for a parameter to 16
 {
@@ -123,6 +124,7 @@ function randomNum()
     return Math.floor(Math.random() * 256); // if max = 10, returns 0-9
 }
 
+// returns a random color
 function randomColor(e)
 {
     e.target.style.cssText = `background-color: rgb(${randomNum()}, ${randomNum()}, ${randomNum()});`;
@@ -167,4 +169,14 @@ function printColor(ev)
 
     boxColor = `background-color: rgb(${r}, ${g}, ${b});`
 };
+
+
+// clears the grid
+let clearBtn = document.querySelector('#clearBtn');
+clearBtn.addEventListener("click", () =>
+{
+    console.log("clear button clicked");
+    divContainer.textContent = ''; // removing the grid
+    makeGrid(size);
+});
 
