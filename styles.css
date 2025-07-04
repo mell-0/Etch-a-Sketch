@@ -1,3 +1,9 @@
+body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .divContainer
 {
     background-color: rgb(113, 87, 114);
@@ -7,7 +13,6 @@
 
     display: flex;
     flex-direction: column;
-
 }
 
 .divRow

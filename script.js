@@ -26,7 +26,7 @@ function makeGrid(size = 16) // setting the defult value for a parameter to 16
             squareDiv = document.createElement("div");
             //squareDiv.textContent = ''; //num++;
 
-            squareDiv.addEventListener("mouseenter", (e) =>  
+            squareDiv.addEventListener("mousemove", (e) =>  
             {
                 if (mouseDown)
                     colorBox(e);
