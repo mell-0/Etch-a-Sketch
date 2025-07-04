@@ -11,7 +11,15 @@
     
     <h1>Etch-a-Sketch</h1>
 
-    <button id="boxBtn"># of boxes</button>
+    <div class="headerBtns">
+        <button id="boxBtn">Grid Size</button>
+        <button id="clearBtn">Clear</button>
+        <button id="rainbowBtn">Rainbow: off</button>
+        <div>
+            <span>Color:</span>
+            <input type="color" onchange="printColor(event)" value="#6E2F70">
+        </div>
+    </div>
 
     <!-- prevents mouse drag which causes box to color without mouse down -->
     <div class="divContainer" onmousedown="return false"> 
@@ -37,3 +45,10 @@
     <script src="script.js"></script>
 </body>
 </html>
+
+<!-- 
+things to add:
+- rainbow color mode
+- color gets darker by 10% until it becomes black
+- color selection
+-->

@@ -10,6 +10,8 @@ let mouseDown = false; // used to check if the mouse button is down
 
 let num = 1; // used to store the value of each box
 
+let boxColor = 'background-color: rgb(110, 47, 112);';
+
 function makeGrid(size = 16) // setting the defult value for a parameter to 16
 {
     let row = column = size;
@@ -26,15 +28,27 @@ function makeGrid(size = 16) // setting the defult value for a parameter to 16
             squareDiv = document.createElement("div");
             //squareDiv.textContent = ''; //num++;
 
-            squareDiv.addEventListener("mousemove", (e) =>  
+            squareDiv.addEventListener("mouseenter", (e) =>  // change color when mouse enters box
             {
+                // if (mouseDown)
+                // {
+                //     if (rainbowColorOn)
+                //         randomColor(e);
+                //     else
+                //         colorBox(e);
+                // }
+
                 if (mouseDown)
-                    colorBox(e);
+                    whichColor(e);
             });  
 
-            squareDiv.addEventListener("click", (e) =>  // now boxes color when clicked
+            squareDiv.addEventListener("mousedown", (e) =>  // now boxes color when right mouse is down
             {
-                colorBox(e);
+                // if (rainbowColorOn)
+                //         randomColor(e);
+                //     else
+                //         colorBox(e);
+                whichColor(e);
             });  
 
             rowContainer.appendChild(squareDiv); // adding boxes to a row container
@@ -62,7 +76,7 @@ divContainer.addEventListener("mouseup", () =>
 // colors in box
 function colorBox(e)
 {
-    e.target.style.cssText = 'background-color: rgb(110, 47, 112);';
+    e.target.style.cssText = boxColor;
 }
 
 makeGrid(); // making the defult grid on screen
@@ -95,11 +109,62 @@ btn.addEventListener("click", () =>
 });
 
 
+// adding rainbow mode
 /**
- * how to make it where it only colors when I hold the mouse down
+ * notes: use random number generator for numbers in rgb(110, 47, 112)
  */
+let rainbowBtn = document.querySelector("#rainbowBtn");
+let rainbowColorOn = false; // used for rainbow switch later
+
+// returns a number from 0 to max-1
+function randomNum()
+{
+    //return Math.floor(Math.random() * max) + 1; // returns 1 through max, ex: max = 10 => 1-10
+    return Math.floor(Math.random() * 256); // if max = 10, returns 0-9
+}
+
+function randomColor(e)
+{
+    e.target.style.cssText = `background-color: rgb(${randomNum()}, ${randomNum()}, ${randomNum()});`;
+}
+
+function whichColor(e)
+{
+    if (rainbowColorOn)
+        randomColor(e);
+    else
+        colorBox(e);
+}
+
+/**
+ * switch button to turn on or off the rainbow color 
+ */
+rainbowBtn.addEventListener("click", () =>
+{
+    if (!rainbowColorOn)
+    {
+        rainbowColorOn = true;
+        rainbowBtn.textContent = "Rainbow: on";
+    } 
+    else  
+    {
+        rainbowColorOn = false;
+        rainbowBtn.textContent = "Rainbow: off";
+    }
+
+    console.log("rainbow button clicked " + rainbowColorOn)
+});
 
 
+// lets you change the color that you use
+function printColor(ev) 
+{
+    const color = ev.target.value
+    const r = parseInt(color.substr(1,2), 16)
+    const g = parseInt(color.substr(3,2), 16)
+    const b = parseInt(color.substr(5,2), 16)
+    console.log(`red: ${r}, green: ${g}, blue: ${b}`)
 
-
+    boxColor = `background-color: rgb(${r}, ${g}, ${b});`
+};
 
