@@ -35,7 +35,12 @@ function makeGrid(size = 16) // setting the defult value for a parameter to 16
 
                 if (mouseEnter && mouseDown)
                     colorBox(e);
-            });   
+            });  
+
+            squareDiv.addEventListener("click", (e) =>  // now boxes color when clicked
+            {
+                colorBox(e);
+            });  
 
             rowContainer.appendChild(squareDiv);
         }
