@@ -16,6 +16,8 @@ body{
 
     display: flex;
     flex-direction: column;
+
+    /* opacity: 90%; */
 }
 
 .divRow

@@ -11,7 +11,8 @@ let mouseDown = false; // used to check if the mouse button is down
 let num = 1; // used to store the value of each box
 
 // defult color is purple but can be changed later
-let boxColor = 'background-color: rgb(110, 47, 112);'; 
+let opacity = .50;
+let boxColor = `background-color: rgba(110, 47, 112, ${opacity});`; 
 
 function makeGrid(size = 16) // setting the defult value for a parameter to 16
 {
@@ -77,7 +78,29 @@ divContainer.addEventListener("mouseup", () =>
 // colors in box
 function colorBox(e)
 {
-    e.target.style.cssText = boxColor;
+    let newBoxColor;
+
+    // if (e.target.style.backgroundColor === '')
+    // {
+    //     console.log('emtpy: ' + e.target.style.backgroundColor);
+    //     e.target.style.cssText = boxColor;
+    // }
+    // else
+    // {
+    //     let myColor = e.target.style.backgroundColor;
+    //     console.log('not emtpy: ' + myColor);
+
+    //     let opacityNum = Number(myColor.slice(-4, -1));
+    //     console.log(opacityNum); // getting the opacity number
+
+    //     // replace the opacity
+    //     myColor = myColor.replace(opacityNum, opacityNum += .1);
+    //     console.log(myColor);
+        
+    //     e.target.style.cssText = "background-color: " + myColor;
+    // }
+
+    e.target.style.cssText = boxColor; // this was original
 }
 
 makeGrid(); // making the defult grid on screen
